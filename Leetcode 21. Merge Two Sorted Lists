@@ -1,0 +1,213 @@
+//#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct node
+{
+    int data;
+    struct node *next;
+}*head;
+
+struct node* createList(int n)
+{
+    struct node *newNode, *temp, *head;
+    int data, i;
+
+    head = (struct node *)malloc(sizeof(struct node));
+
+    if(head == NULL)
+    {
+        printf("no memory.");
+
+    }
+
+
+
+    printf("Enter the data of node 1: ");
+    scanf("%d", &data);
+
+    head->data = data;
+    head->next = NULL;
+
+
+
+    temp = head;
+    for(i=2; i<=n; i++)
+    {
+        newNode = (struct node *)malloc(sizeof(struct node));
+
+
+        if(newNode == NULL)
+        {
+            printf("no memory.");
+            break;
+        }
+
+        printf("Enter the data of node %d: ", i);
+        scanf("%d", &data);
+
+        newNode->data = data;
+        newNode->next = NULL;
+
+        temp->next = newNode;
+        temp = temp->next;
+    }
+
+    return head;
+}
+
+struct node* createblankList(int n)
+{
+    struct node *newNode, *temp, *head;
+    int data, i;
+
+    head = (struct node *)malloc(sizeof(struct node));
+
+    if(head == NULL)
+    {
+        printf("no memory.");
+
+    }
+
+
+
+
+    data = 0;
+
+    head->data = data;
+    head->next = NULL;
+
+
+
+    temp = head;
+    for(i=2; i<=n; i++)
+    {
+        newNode = (struct node *)malloc(sizeof(struct node));
+
+
+        if(newNode == NULL)
+        {
+            printf("no memory.");
+            break;
+        }
+
+        data = 0;
+
+        newNode->data = data;
+        newNode->next = NULL;
+
+        temp->next = newNode;
+        temp = temp->next;
+    }
+
+    return head;
+}
+
+void printList(struct node* n)
+{
+    while (n != NULL) {
+        printf(" %d ", n->data);
+        n = n->next;
+    }
+}
+
+
+int traverseList(struct node*head)
+{
+    struct node *temp;
+    int len = 0;
+
+
+    if(head == NULL)
+    {
+        printf("List is empty.");
+        return 0;
+    }
+
+    temp = head;
+    while(temp != NULL)
+    {
+        len++; // Print data of current node
+        temp = temp->next;                 // Move to next node
+    }
+    return len;
+}
+
+int main(void)
+{
+    int n,m;
+    struct node* l1;
+    struct node* l2;
+    struct node* l3;
+
+    printf("Enter the total number of nodes for list 1: ");
+    scanf("%d", &n);
+    l1 = createList(n);
+
+    printf("Enter the total number of nodes for list 2: ");
+    scanf("%d", &m);
+    l2 = createList(m);
+
+    printList(l1);
+    printf("\n");
+    printList(l2);
+    printf("\n");
+
+    int lenl1 = traverseList(l1);
+    int lenl2 = traverseList(l2);
+    printf("Len of l1 = %i\n", lenl1);
+    printf("Len of l2 = %i\n", lenl2);
+
+     int l3len = lenl1 + lenl2;
+
+    l3 = createblankList(lenl1 + lenl2);
+    printList(l3);
+
+    int i = 0;
+
+    printf("\nl2 = %pu, \n l3 = %pu \n l1 = %pu \n", l2, l3, l1);
+    printList(l1);
+    printf("\n");
+    printList(l2);
+    printf("\n");
+    printList(l3);
+    printf("\n");
+
+    l3.head->data = 17;
+    printf("\n");
+    printList(l3);
+    printf("\n");
+
+   /* while( i <= l3len )
+    {
+    if( l2 == NULL || l1 != NULL && l1->data <= l2->data)
+
+        {
+
+
+            printList(l3);
+            l3->data = l1->data;
+            l1 = l1->next;
+            l3 = l3->next;
+
+            i++;
+
+        }
+    else
+        {
+            printList(l3);
+            l3->data = l2->data;
+            l2 = l2->next;
+            l3 = l3->next;
+
+            i++;
+        }
+
+    }
+*/
+
+
+
+}
